@@ -13,15 +13,15 @@ This chatbot is capable of predicting costs based on input data and performing t
    - ```bash
      pip install -r requirements.txt
      ```
-#### 4. Set OpenAI API Key as an environment variable using secret .env file.
+#### 3. Set OpenAI API Key as an environment variable using secret .env file.
    - ```.env
       OPENAI_API_KEY = "your-api-key"`
      ```
-#### 5. Usage:
+#### 4. Usage:
   - ```bash
     python app.py
     ```
-#### 6. Output: 
+#### 5. Output: 
 ##### Main Page
 ![out1](https://github.com/shriram-2109/Cost-Forecasting-Chatbot/blob/main/images/Main%20Page.png)
 ##### Seasonal Decomposition Query
