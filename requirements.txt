@@ -1,0 +1,8 @@
+Flask
+pandas
+numpy
+statsmodels
+pmdarima
+matplotlib
+openai
+python-dotenv

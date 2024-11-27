@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CostGPT</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Welcome to CostGPT</h1>
+        {% if columns and columns|length > 0 %}
+        <div class="alert alert-info">
+            <strong>Column names in the uploaded file:</strong>
+            <ul>
+                {% for column in columns %}
+                <li>{{ column }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        <form method="POST" action="/chatbot">
+            <div class="form-group">
+                <label for="query">Enter your query:</label>
+                <textarea class="form-control" id="query" name="query" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="date_col">Date Column:</label>
+                <input type="text" class="form-control" id="date_col" name="date_col">
+            </div>
+            <div class="form-group">
+                <label for="value_col">Value Column:</label>
+                <input type="text" class="form-control" id="value_col" name="value_col">
+            </div>
+            <div class="form-group">
+                <label for="option">Choose an option:</label>
+                <select class="form-control" id="option" name="option">
+                    <option value="0">No Specific Option</option>
+                    <option value="1">Seasonal Decomposition</option>
+                    <option value="2">Forecasting</option>
+                </select>
+            </div>
+            <div class="form-group" id="forecast-options" style="display: none;">
+                <label for="forecast_months">Number of months to forecast:</label>
+                <input type="number" class="form-control" id="forecast_months" name="forecast_months" value="6" min="1">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit Query</button>
+        </form>
+        {% if result %}
+        <div class="alert alert-info mt-3" role="alert">
+            {{ result|safe }}
+        </div>
+        {% endif %}
+        {% if plot_url %}
+        <div class="text-center mt-3">
+            <img src="{{ plot_url }}" class="img-fluid" alt="Plot Image">
+        </div>
+        {% endif %}
+        {% if forecast_html %}
+        <div class="mt-3">
+            <h2>Forecasted Data</h2>
+            {{ forecast_html|safe }}
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        document.getElementById('option').addEventListener('change', function() {
+            var forecastOptions = document.getElementById('forecast-options');
+            if (this.value === '2') {
+                forecastOptions.style.display = 'block';
+            } else {
+                forecastOptions.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

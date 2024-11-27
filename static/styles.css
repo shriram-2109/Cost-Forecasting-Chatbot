@@ -1,0 +1,32 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    border-radius: 8px;
+}
+
+#chatbox {
+    height: 300px;
+    overflow-y: scroll;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    padding: 10px;
+}
+
+#chatbox .message {
+    margin-bottom: 10px;
+}
+
+#chatbox .message.bot {
+    text-align: left;
+}
+
+#chatbox .message.user {
+    text-align: right;
+}
+
+form {
+    margin-top: 10px;
+}
